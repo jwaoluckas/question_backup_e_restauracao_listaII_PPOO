@@ -21,3 +21,9 @@ Prompt 4
 Como implemento o controle remoto universal e o método store() para salvar o histórico de comandos executados em arquivo no disco?
 
 Criei a classe RemoteControl com o método press(), que executa o comando, coloca na lista de histórico e chama o store(). Por enquanto o store() grava só o comando que acabou de ser executado no fim do arquivo. Ainda falta o load() para ler tudo de volta.
+
+Prompt 5
+
+Ao salvar vários comandos seguidos no mesmo arquivo usando serialização, deu erro na leitura com load(). Como corrigir e garantir a ordem certa?
+
+O erro era StreamCorruptedException. Cada vez que eu abria um ObjectOutputStream em modo append ele escrevia um cabeçalho novo no meio do arquivo, e o ObjectInputStream não aceita isso na segunda leitura. Mudei o store() para regravar o arquivo inteiro com a lista de histórico de uma vez só, assim existe um cabeçalho só e a ordem da lista é mantida. O load() lê essa lista e o restore() executa cada comando na ordem. Uma vantagem a mais é que os dispositivos compartilhados entre os comandos continuam sendo o mesmo objeto depois de ler do disco.
