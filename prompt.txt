@@ -15,3 +15,9 @@ Prompt 3
 Agora quero criar os comandos concretos para esses dispositivos seguindo o padrão Command. Como evitar código repetitivo demais nos comandos?
 
 Em vez de uma classe para cada ação (daria uns 30 arquivos), deixei um comando por dispositivo com um enum Action dentro dele. Os parâmetros como volume, canal e temperatura ficam guardados dentro do próprio comando, no campo value, então quando o comando é carregado do disco e executado de novo ele reproduz o mesmo estado de antes.
+
+Prompt 4
+
+Como implemento o controle remoto universal e o método store() para salvar o histórico de comandos executados em arquivo no disco?
+
+Criei a classe RemoteControl com o método press(), que executa o comando, coloca na lista de histórico e chama o store(). Por enquanto o store() grava só o comando que acabou de ser executado no fim do arquivo. Ainda falta o load() para ler tudo de volta.
