@@ -27,3 +27,9 @@ Prompt 5
 Ao salvar vários comandos seguidos no mesmo arquivo usando serialização, deu erro na leitura com load(). Como corrigir e garantir a ordem certa?
 
 O erro era StreamCorruptedException. Cada vez que eu abria um ObjectOutputStream em modo append ele escrevia um cabeçalho novo no meio do arquivo, e o ObjectInputStream não aceita isso na segunda leitura. Mudei o store() para regravar o arquivo inteiro com a lista de histórico de uma vez só, assim existe um cabeçalho só e a ordem da lista é mantida. O load() lê essa lista e o restore() executa cada comando na ordem. Uma vantagem a mais é que os dispositivos compartilhados entre os comandos continuam sendo o mesmo objeto depois de ler do disco.
+
+Prompt 6
+
+Cria uma classe Main simples simulando configurar a casa, acontecer uma pane elétrica e o sistema restaurar tudo exatamente como estava antes.
+
+Deixei a criação dos dispositivos dentro de um método separado (configureHouse), assim quando ele termina os dispositivos originais somem da memória, que é a pane. Depois crio um RemoteControl novo, que não sabe de nada, e chamo o restore(). Compilei e rodei com javac e java e as mensagens da restauração saíram iguais às da configuração, na mesma ordem. Apaguei o backup.ser que o teste gerou e escrevi um README curto com os comandos para compilar e rodar.
