@@ -9,3 +9,9 @@ Prompt 2
 Me ajuda a implementar os 7 dispositivos do diagrama de classes de forma bem simples, só para simular o estado de cada um.
 
 Mudei duas coisas no que veio. Coloquei Serializable em todas as classes, porque os comandos guardam uma referência para o dispositivo e vão ser gravados em disco. E mantive cada classe enxuta, só com os métodos do diagrama, um campo de estado e um println para mostrar o que aconteceu. Também marquei o estado como transient, assim quando o dispositivo é lido do disco ele volta zerado, como se tivesse faltado luz, e só o histórico de comandos reconstrói o estado.
+
+Prompt 3
+
+Agora quero criar os comandos concretos para esses dispositivos seguindo o padrão Command. Como evitar código repetitivo demais nos comandos?
+
+Em vez de uma classe para cada ação (daria uns 30 arquivos), deixei um comando por dispositivo com um enum Action dentro dele. Os parâmetros como volume, canal e temperatura ficam guardados dentro do próprio comando, no campo value, então quando o comando é carregado do disco e executado de novo ele reproduz o mesmo estado de antes.
