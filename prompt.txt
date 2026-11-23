@@ -1,0 +1,5 @@
+Prompt 1
+
+Vou fazer um exercício em Java usando padrão Command com store e load para automação residencial. Como devo organizar as pastas e interfaces?
+
+Ficou assim: uma pasta src com o pacote command (interface Command) e um pacote device para os dispositivos. A interface Command estende Serializable porque os comandos vão ser gravados em disco, e por enquanto só tem o execute().
